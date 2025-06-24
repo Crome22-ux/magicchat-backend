@@ -15,7 +15,7 @@ app.post("/api/chat", async (req, res) => {
   const { messages } = req.body;
 
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch('https://magicchat-backend.onrender.com/api/chat', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -8,14 +8,14 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors()); // ✅ Allow all CORS
 app.use(express.json());
 
 app.post("/api/chat", async (req, res) => {
   const { messages } = req.body;
 
   try {
-    const response = await fetch('https://magicchat-backend.onrender.com/api/chat', {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

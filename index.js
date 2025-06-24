@@ -23,7 +23,7 @@ app.post("/api/chat", async (req, res) => {
         "OpenAI-Project": "proj_pzMWUAjkDKn9ZMDIUhofLsQT" // 🔁 Replace with your actual Project ID if different
       },
       body: JSON.stringify({
-        model: "gpt-4",
+        model: "gpt-3.5-turbo",
         messages
       })
     });

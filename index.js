@@ -28,6 +28,7 @@ app.post("/api/chat", async (req, res) => {
     });
 
     const data = await response.json();
+    console.log("OpenAI response:", data);
     const reply = data.choices?.[0]?.message?.content || "Sorry, no magic today.";
     res.json({ reply });
   } catch (error) {

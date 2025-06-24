@@ -1,4 +1,4 @@
-// MagicChat: Disney-Themed ChatGPT Wrapper Backend (Node.js/Express)
+// MagicChat Backend (Node.js + Express)
 
 const express = require("express");
 const fetch = require("node-fetch");
@@ -8,7 +8,7 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors()); // allow all origins
+app.use(cors()); // Allow all origins
 app.use(express.json());
 
 app.post("/api/chat", async (req, res) => {
@@ -19,8 +19,7 @@ app.post("/api/chat", async (req, res) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-        "OpenAI-Project": "proj_pzMWUAjkDKn9ZMDIUhofLsQT"
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
       },
       body: JSON.stringify({
         model: "gpt-4",
@@ -29,9 +28,10 @@ app.post("/api/chat", async (req, res) => {
     });
 
     const data = await response.json();
+    console.log("OpenAI response:", data);
+
     const reply = data.choices?.[0]?.message?.content || "Sorry, no magic today.";
     res.json({ reply });
-
   } catch (error) {
     console.error("OpenAI API error:", error);
     res.status(500).json({ reply: "Oops! MagicChat hit a snag. Try again later." });
